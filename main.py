@@ -2,6 +2,7 @@ from random import randint
 import pygame
 from class_plaer import dinozavrik
 from class_kaktus import long_kaktus, short_kaktus
+from saport import colide
 
 def close_game():
     for event in pygame.event.get():
@@ -34,27 +35,37 @@ while True:
 
     dino.test()
 
+    # print(dino.rect)
+    # print(kaktuses.sprites())
+    # print(short_kaktus)
+    # print(long_kaktus)
+
 
 
     kaktuses.update()
     kaktuses.draw(screen)
 
-#    long_kaktus().kill()
+    for i in kaktuses:
+        i.draw_coligion(screen)
+        if colide(dino.rect, i.rect):
+            if collide == 0:
+                while True:
+                    screen.fill('black')
+                    screen.blit(shrift.render('GAME OVER', True, (200,0,0)), (140, 100))
+                    screen.blit(shrift.render('click in spase', True, (50,0,0)), (140, 170))
+                    pygame.display.update()
+                    close_game()
+                    if pygame.key.get_pressed()[pygame.K_SPACE]:
+                        kaktuses = pygame.sprite.Group()
+                        break
+
 
     pygame.draw.rect(screen, pygame.Color('white'), (0, 500, 900, 5))
     dino.draw(screen)
+    dino.draw_coligion(screen)
 
 
-    # if collide == 0:
-    #     while True:
-    #         screen.fill('black')
-    #         screen.blit(shrift.render('GAME OVER', True, (200,0,0)), (140, 100))
-    #         screen.blit(shrift.render('click in spase', True, (50,0,0)), (140, 170))
-    #         pygame.display.update()
-    #         close_game()
-    #         if pygame.key.get_pressed()[pygame.K_SPACE]:
-    #             kaktuses = pygame.sprite.Group()
-    #             break
+
 
     clock.tick(fps)
     pygame.display.update()

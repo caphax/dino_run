@@ -14,6 +14,9 @@ class short_kaktus(obstical):
         self.rect.x = 900
         self.rect.y = 470
 
+    def draw_coligion(self, screen):
+        pygame.draw.rect(screen, pygame.Color('red'), (self.rect), 2)
+
 
 class long_kaktus(obstical):
 
@@ -28,6 +31,7 @@ class long_kaktus(obstical):
         self.rect.x = 900
         self.rect.y = 410
 
-
+    def draw_coligion(self, screen):
+        pygame.draw.rect(screen, pygame.Color('red'), (self.rect), 2)
 
 

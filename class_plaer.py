@@ -6,9 +6,6 @@ from random import randint
 
 class dinozavrik(pygame.sprite.Sprite):
 
-    def draw(self, screen):
-        screen.blit(self.image, self.rect)
-
     def __init__(self):
         super().__init__()
         self.dx = 0
@@ -20,7 +17,15 @@ class dinozavrik(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (50, 350)
         self.per = True
-        self.kaktus = []
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
+
+    def draw_coligion(self,screen):
+        pygame.draw.rect(screen, pygame.Color('red'), (self.rect), 2)
+
+
+
     def test(self):
       self.per = True
 
