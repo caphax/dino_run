@@ -3,6 +3,7 @@ import pygame
 from class_plaer import dinozavrik
 from class_kaktus import long_kaktus, short_kaktus
 from saport import colide
+from class_obstract_opstical import obstical
 
 def close_game():
     for event in pygame.event.get():
@@ -11,7 +12,7 @@ def close_game():
 kaktuses = pygame.sprite.Group()
 RES = 800
 fps = 60
-
+chet = 0
 
 
 pygame.init()
@@ -24,8 +25,12 @@ shrift = pygame.font.Font(None, 120)
 
 
 while True:
+#    print(chet)
     collide = pygame.Rect.collidelist(dino.rect, kaktuses.sprites())
+
     screen.fill('black')
+
+
     if len(kaktuses) < 3 and pygame.time.get_ticks() - t >= randint(400, 9000):
         t = pygame.time.get_ticks()
         if randint(1,3) == 1:
@@ -41,11 +46,21 @@ while True:
     # print(long_kaktus)
 
 
+    for i in kaktuses:
+        chet += i.update()
 
-    kaktuses.update()
+
     kaktuses.draw(screen)
 
+    # print(dino.rect, long_kaktus().rect)
+    # print(short_kaktus().rect)
+
+
+    screen.blit(shrift.render(f'chet {chet}', True, (100,150,0)), (30, 20))
+
     for i in kaktuses:
+
+
         i.draw_coligion(screen)
         if colide(dino.rect, i.rect):
             if collide == 0:
@@ -57,6 +72,7 @@ while True:
                     close_game()
                     if pygame.key.get_pressed()[pygame.K_SPACE]:
                         kaktuses = pygame.sprite.Group()
+                        chet = 0
                         break
 
 
