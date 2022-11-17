@@ -13,6 +13,7 @@ kaktuses = pygame.sprite.Group()
 RES = 800
 fps = 60
 chet = 0
+chet_hitbox = 0
 
 
 pygame.init()
@@ -39,6 +40,7 @@ while True:
             kaktuses.add(short_kaktus())
 
     dino.test()
+
 
     # print(dino.rect)
     # print(kaktuses.sprites())
@@ -78,7 +80,7 @@ while True:
 
     pygame.draw.rect(screen, pygame.Color('white'), (0, 500, 900, 5))
     dino.draw(screen)
-    dino.draw_coligion(screen)
+#    dino.draw_coligion(screen)
 
 
 

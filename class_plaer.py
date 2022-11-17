@@ -45,6 +45,9 @@ class dinozavrik(pygame.sprite.Sprite):
           self.per = True
           self.y_speed = -60
 
+      if qwerty[pygame.key_e]:
+          return 1
+      return 0
 
 
 
